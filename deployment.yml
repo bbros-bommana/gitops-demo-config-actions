@@ -18,6 +18,9 @@ spec:
         image: 356791834110.dkr.ecr.us-east-2.amazonaws.com/gitops-skm-demo:9
         ports:
         - containerPort: 5000
+      imagePullSecrets: 
+      - name: regcred
+      
 ---
 apiVersion: v1
 kind: Service
