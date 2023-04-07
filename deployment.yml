@@ -19,7 +19,7 @@ spec:
         ports:
         - containerPort: 5000
       imagePullSecrets: 
-      - name: ecr-registry-helper-secrets
+      - name: regcred
       
 ---
 apiVersion: v1
