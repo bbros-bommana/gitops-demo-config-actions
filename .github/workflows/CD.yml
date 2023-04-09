@@ -15,5 +15,5 @@ jobs:
           valueFile: 'deployment.yml'
           propertyPath: 'spec.template.spec.containers[0].image'
           value: 356791834110.dkr.ecr.us-east-2.amazonaws.com/${{ github.event.client_payload.image }}
-          branch: main
+          branch: master
           message: "Update Image Version to ${{ github.event.client_payload.image }}"
