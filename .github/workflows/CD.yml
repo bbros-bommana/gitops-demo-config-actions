@@ -1,20 +1,19 @@
-name: Repository Dispatch
-
+name: Update Image in the Kube.yaml
 on:
   repository_dispatch:
-    types: [new-image]
+    types: [update-image]
 jobs:
-  build:
+  update-image:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Update Image Version
-      id: imgupd
-      uses: mikefarah/yq@master
-      with:
-        cmd: yq eval '.spec.template.spec.containers[0].image = "${{ github.event.client_payload.image }}"' -i deployment.yml
-      
-    - uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: Apply image name changes
+      - name: Update Image Version kube.yaml
+        uses: fjogeleit/yaml-update-action@main
+        with:
+          valueFile: 'deployment.yaml'
+          propertyPath: 'spec.template.spec.containers[0].image'
+          value: 356791834110.dkr.ecr.us-east-2.amazonaws.com/${{ github.event.client_payload.image }}
+          branch: main
+          message: "Update Image Version to ${{ github.event.client_payload.image }}"
