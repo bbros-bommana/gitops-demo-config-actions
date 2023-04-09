@@ -1,7 +1,7 @@
 name: Update Image in the Kube.yaml
 on:
   repository_dispatch:
-    types: [update-image]
+    types: [new-image]
 jobs:
   update-image:
     runs-on: ubuntu-latest
